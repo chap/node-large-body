@@ -1,8 +1,8 @@
 const express = require('express');
 
 const app = express();
-app.post('/', (req, res, next) => {
-    res.send('Hi');
+app.post('/post', (req, res, next) => {
+    res.send('success');
 });
 
 const port = process.env.PORT || 5000;
