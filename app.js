@@ -15,13 +15,14 @@ app.post('/post-end', (req, res) => {
 
 
 app.post('/post', (req, res) => {
-  let postBody = '';
-  req.on('data', chunk => {
-      postBody += chunk.toString(); // convert Buffer to string
-  });
-  req.on('end', () => {
-      console.log(postBody);
-      res.end('success');
+  let body = [];
+  req.on('data', (chunk) => {
+    body.push(chunk);
+  }).on('end', () => {
+    body = Buffer.concat(body).toString();
+    // at this point, `body` has the entire request body stored in it as a string
+    console.log("POST body="+body);
+    res.end('success');
   });
 });
 
