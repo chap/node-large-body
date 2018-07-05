@@ -1,9 +1,9 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-
 const app = express();
-app.use(bodyParser.json({limit: '5mb'}));
-// app.use(bodyParser({limit: '5mb'}));
+
+app.get('/', (req, res) => {
+    res.send("<html><body><form action='/post' method='post'><textarea name='form-text'></textarea><button>submit</button></form>");
+});
 
 app.post('/post', (req, res) => {
     res.send('success');
